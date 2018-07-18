@@ -12,9 +12,9 @@
       <hr>
       <button class="btn btn-primary" (click)='onDisplayData()'>Display Details</button>
       <hr>
-      <p *ngFor="let logItem of log">{{ logItem }}</p>
+      <p *ngFor="let logItem of log" [ngStyle]="{backgroundColor: logItem >= 5 ? 'blue' : 'transparent'}" [ngClass]="{'white-text': logItem >= 5}">{{ logItem }}</p>
       <hr>
-      <p *ngIf="displayData">{{userPassword}}</p>
+      <p *ngIf="displayData">{{ userPassword }}</p>
     </div>
   </div>
 </div>

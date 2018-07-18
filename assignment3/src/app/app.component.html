@@ -10,8 +10,9 @@
         <li>Starting at the 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass)</li>
       </ol>
       <hr>
-      <button class="btn btn-primary">Display Details</button>
-      <p>{{displayData}}</p>
+      <button class="btn btn-primary" (click)='onDisplayData()'>Display Details</button>
+      <hr>
+      <p *ngIf="displayData">{{userPassword}}</p>
     </div>
   </div>
 </div>

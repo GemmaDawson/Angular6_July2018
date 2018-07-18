@@ -6,9 +6,11 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  displayData: string = "Secret Password = tuna";
+  displayData = false;
+  userPassword: string = "Secret Password = tuna";
 
-  // onDisplayData() {
-  //   this.
-  // }
+  onDisplayData() {
+    this.displayData = !this.displayData;
+    // this.displayData;
+  }
 }

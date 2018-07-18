@@ -12,6 +12,8 @@
       <hr>
       <button class="btn btn-primary" (click)='onDisplayData()'>Display Details</button>
       <hr>
+      <p *ngFor="let logItem of log">{{ logItem }}</p>
+      <hr>
       <p *ngIf="displayData">{{userPassword}}</p>
     </div>
   </div>

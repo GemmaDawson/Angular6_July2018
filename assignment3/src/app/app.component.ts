@@ -8,9 +8,10 @@ import { Component } from "@angular/core";
 export class AppComponent {
   displayData = false;
   userPassword: string = "Secret Password = tuna";
+  log = [];
 
   onDisplayData() {
     this.displayData = !this.displayData;
-    // this.displayData;
+    this.log.push(this.log.length + 1);
   }
 }

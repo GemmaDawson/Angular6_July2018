@@ -12,6 +12,11 @@ export class RecipeListComponent implements OnInit {
       "Doughnut",
       "Doughnut Description",
       "https://s1.piq.land/2012/09/02/hShZ2cTlaKWQjmozoMoxvGA5_400x400.png"
+    ),
+    new Recipe(
+      "Sushi",
+      "Sushi Description",
+      "https://s1.piq.land/2014/04/15/S2Way09KH87B0OVsJQRWpDcC_400x400.png"
     )
   ];
 

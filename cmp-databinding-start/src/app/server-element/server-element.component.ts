@@ -9,7 +9,8 @@ import {
   AfterContentInit,
   AfterContentChecked,
   AfterViewInit,
-  AfterViewChecked
+  AfterViewChecked,
+  OnDestroy
 } from "@angular/core";
 // import { ViewEncapsulation } from "@angular/compiler/src/core";
 
@@ -27,7 +28,8 @@ export class ServerElementComponent
     AfterContentInit,
     AfterContentChecked,
     AfterViewInit,
-    AfterViewChecked {
+    AfterViewChecked,
+    OnDestroy {
   @Input("srvElement") element: { type: string; name: string; content: string };
   @Input() name: string;
 
@@ -62,5 +64,9 @@ export class ServerElementComponent
 
   ngAfterViewChecked() {
     console.log("ngAfterViewChecked called");
+  }
+
+  ngOnDestroy() {
+    console.log("ngOnDestroy called");
   }
 }

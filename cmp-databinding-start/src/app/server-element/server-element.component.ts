@@ -6,7 +6,8 @@ import {
   OnChanges,
   SimpleChanges,
   DoCheck,
-  AfterContentInit
+  AfterContentInit,
+  AfterContentChecked
 } from "@angular/core";
 // import { ViewEncapsulation } from "@angular/compiler/src/core";
 
@@ -17,7 +18,7 @@ import {
   encapsulation: ViewEncapsulation.Emulated //but this the default and doesn't need to be explictly stated
 })
 export class ServerElementComponent
-  implements OnInit, OnChanges, DoCheck, AfterContentInit {
+  implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked {
   @Input("srvElement") element: { type: string; name: string; content: string };
   @Input() name: string;
 
@@ -40,5 +41,9 @@ export class ServerElementComponent
 
   ngAfterContentInit() {
     console.log("ngAfterContentInit called");
+  }
+
+  ngAfterContentChecked() {
+    console.log("ngAfterContentChecked called");
   }
 }

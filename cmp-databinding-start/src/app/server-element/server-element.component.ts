@@ -10,7 +10,9 @@ import {
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef
 } from "@angular/core";
 // import { ViewEncapsulation } from "@angular/compiler/src/core";
 
@@ -32,6 +34,7 @@ export class ServerElementComponent
     OnDestroy {
   @Input("srvElement") element: { type: string; name: string; content: string };
   @Input() name: string;
+  @ViewChild("theheader") header: ElementRef;
 
   constructor() {
     console.log("constructor called");
@@ -44,6 +47,7 @@ export class ServerElementComponent
 
   ngOnInit() {
     console.log("ngOnInit called");
+    console.log("Text content: " + this.header.nativeElement.textContent);
   }
 
   ngDoCheck() {
@@ -60,6 +64,7 @@ export class ServerElementComponent
 
   ngAfterViewInit() {
     console.log("ngAfterViewInit called");
+    console.log("Text content: " + this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked() {

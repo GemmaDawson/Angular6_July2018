@@ -31,7 +31,7 @@ export class GameControlComponent {
     // return this.displayText;
   }
 
-  // onStopGame() {
-  //   return (this.displayText = "Game Over! Click the START button to begin!");
-  // }
+  onStopGame() {
+    clearInterval(this.interval);
+  }
 }

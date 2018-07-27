@@ -20,9 +20,13 @@
         <li>
           <s>When stopping the game, no more events should get emitted (clearInterval(ref))</s>
         </li>
-        <li>A new Odd component should get created for every odd number emitted, the same should happen for the Even Component
-          (on even numbers)</li>
-        <li>Simply output Odd - NUMBER or Even - NUMBER in the two components</li>
+        <li>
+          <s>A new Odd component should get created for every odd number emitted, the same should happen for the Even Component
+            (on even numbers)</s>
+        </li>
+        <li>
+          <s>Simply output Odd - NUMBER or Even - NUMBER in the two components</s>
+        </li>
         <li>Style the element (e.g. paragraph) holding your output text differently in both components</li>
       </ol>
     </div>
@@ -36,10 +40,11 @@
       <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
       <hr>
       <div class="col-xs-6">
-        <app-odd-results></app-odd-results>
+        <app-odd-results *ngFor="let oddNumber of oddNumbers" [number]="oddNumber">
+        </app-odd-results>
       </div>
       <div class="col-xs-6">
-        <app-even-results></app-even-results>
+        <app-even-results *ngFor="let evenNumber of evenNumbers" [number]="evenNumber"></app-even-results>
       </div>
     </div>
   </div>

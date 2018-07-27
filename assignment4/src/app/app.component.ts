@@ -10,7 +10,6 @@ export class AppComponent {
   evenNumbers: number[] = [];
 
   onIntervalFired(firedNumber: number) {
-    console.log(firedNumber);
     if (firedNumber % 2 === 0) {
       this.evenNumbers.push(firedNumber);
     } else {

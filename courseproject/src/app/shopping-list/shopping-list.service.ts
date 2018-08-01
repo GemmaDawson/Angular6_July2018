@@ -16,4 +16,17 @@ export class ShoppingListService {
     this.ingredients.push(ingredient);
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
+
+  addIngredients(ingredients: Ingredient[]) {
+    // Below adds the ingredients one at a time,
+    // but is not the best option
+    // for (let ingredient of ingredients) {
+    //   this.addIngredient(ingredient);
+    // }
+    // Below add all in ingredients in one go
+    // better option
+    // ... is the spread operator which turns an array into a list
+    this.ingredients.push(...ingredients);
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
 }

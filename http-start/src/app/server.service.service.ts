@@ -38,7 +38,7 @@ export class ServerService {
     //     return Observable.throw("something went wrong");
     //   });
     return this.http
-      .get("https://udemy-ng-http-9cb9b.firebaseio.com/data")
+      .get("https://udemy-ng-http-9cb9b.firebaseio.com/data.json")
       .pipe(
         map((response: Response) => {
           const data = response.json();
@@ -51,6 +51,16 @@ export class ServerService {
       .pipe(
         catchError(error => {
           return throwError("something went wrong");
+        })
+      );
+  }
+
+  getAppName() {
+    return this.http
+      .get("https://udemy-ng-http-9cb9b.firebaseio.com/appName.json")
+      .pipe(
+        map((response: Response) => {
+          return response.json();
         })
       );
   }

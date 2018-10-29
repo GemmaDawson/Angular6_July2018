@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http, Response } from "@angular/http";
-import "rxjs/Rx";
+// import "rxjs/Rx";
 import { Observable } from "rxjs/Rx";
-// import { map } from "rxjs/operators";
+import { map, catchError } from "rxjs/operators";
+import { throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -24,28 +25,33 @@ export class ServerService {
   }
 
   getServers() {
+    // return this.http
+    //   .get("https://udemy-ng-http-9cb9b.firebaseio.com/data")
+    //   .map((response: Response) => {
+    //     const data = response.json();
+    //     for (const server of data) {
+    //       server.name = "FETCHED_" + server.name;
+    //     }
+    //     return data;
+    //   })
+    //   .catch((error: Response) => {
+    //     return Observable.throw("something went wrong");
+    //   });
     return this.http
       .get("https://udemy-ng-http-9cb9b.firebaseio.com/data")
-      .map((response: Response) => {
-        const data = response.json();
-        for (const server of data) {
-          server.name = "FETCHED_" + server.name;
-        }
-        return data;
-      })
-      .catch((error: Response) => {
-        return Observable.throw("something went wrong");
-      });
-    // return this.http
-    //   .get("https://udemy-ng-http-9cb9b.firebaseio.com/data.json")
-    //   .pipe(
-    //     map((response: Response) => {
-    //       const data = response.json();
-    //       for (const server of data) {
-    //         server.name = "FETCHED_" + server.name;
-    //       }
-    //       return data;
-    //     })
-    //   );
+      .pipe(
+        map((response: Response) => {
+          const data = response.json();
+          for (const server of data) {
+            server.name = "FETCHED_" + server.name;
+          }
+          return data;
+        })
+      )
+      .pipe(
+        catchError(error => {
+          return throwError("something went wrong");
+        })
+      );
   }
 }

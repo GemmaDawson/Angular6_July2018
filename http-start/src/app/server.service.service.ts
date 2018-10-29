@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http, Response } from "@angular/http";
-import "rxjs/Rx";
+// import "rxjs/Rx";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -24,12 +25,14 @@ export class ServerService {
   getServers() {
     return this.http
       .get("https://udemy-ng-http-9cb9b.firebaseio.com/data.json")
-      .map((response: Response) => {
-        const data = response.json();
-        for (const server of data) {
-          server.name = "FETCHED_" + server.name;
-        }
-        return data;
-      });
+      .pipe(
+        map((response: Response) => {
+          const data = response.json();
+          for (const server of data) {
+            server.name = "FETCHED_" + server.name;
+          }
+          return data;
+        })
+      );
   }
 }

@@ -26,6 +26,9 @@ export class ServerService {
       .get("https://udemy-ng-http-9cb9b.firebaseio.com/data.json")
       .map((response: Response) => {
         const data = response.json();
+        for (const server of data) {
+          server.name = "FETCHED_" + server.name;
+        }
         return data;
       });
   }

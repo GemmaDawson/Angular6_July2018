@@ -23,6 +23,11 @@ export class AuthService {
       .catch(error => console.log(error));
   }
 
+  logout() {
+    firebase.auth().signOut();
+    this.token = null;
+  }
+
   getToken() {
     // be careful - this implementation can return an expired token & error handling for this has not been covered
     // the first line, fetches a new token but the second line returns the currently saved token from when the user signed in

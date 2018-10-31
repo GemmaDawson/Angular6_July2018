@@ -20,7 +20,8 @@ export class DataStorageService {
     return this.httpClient.put(
       "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
         token,
-      this.recipeService.getRecipes()
+      this.recipeService.getRecipes(),
+      { observe: "events" }
     );
   }
 

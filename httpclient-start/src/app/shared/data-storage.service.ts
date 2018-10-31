@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import "rxjs/Rx";
 
 import { RecipeService } from "../recipes/recipe.service";
@@ -21,7 +21,13 @@ export class DataStorageService {
       "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
         token,
       this.recipeService.getRecipes(),
-      { observe: "body" }
+      {
+        observe: "body",
+        headers: new HttpHeaders().set(
+          "Authorization",
+          "Bearer aksdjhkjashdfkjh"
+        )
+      }
     );
   }
 

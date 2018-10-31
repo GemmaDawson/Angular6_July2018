@@ -21,7 +21,7 @@ export class DataStorageService {
       "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
         token,
       this.recipeService.getRecipes(),
-      { observe: "events" }
+      { observe: "body" }
     );
   }
 

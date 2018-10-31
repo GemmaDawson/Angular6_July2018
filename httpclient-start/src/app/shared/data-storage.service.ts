@@ -1,5 +1,10 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpRequest
+} from "@angular/common/http";
 import "rxjs/Rx";
 
 import { RecipeService } from "../recipes/recipe.service";
@@ -21,15 +26,24 @@ export class DataStorageService {
     //   "Bearer aksdjhkjashdfkjh"
     // );
 
-    return this.httpClient.put(
+    // return this.httpClient.put(
+    //   "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json",
+    //   this.recipeService.getRecipes(),
+    //   {
+    //     observe: "body",
+    //     params: new HttpParams().set("auth", token)
+    //     // headers: headers
+    //   }
+    // );
+
+    const req = new HttpRequest(
+      "PUT",
       "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json",
       this.recipeService.getRecipes(),
-      {
-        observe: "body",
-        params: new HttpParams().set("auth", token)
-        // headers: headers
-      }
+      { reportProgress: true, params: new HttpParams().set("auth", token) }
+      // useful when uploading/downloding
     );
+    return this.httpClient.request(req);
   }
 
   getRecipes() {

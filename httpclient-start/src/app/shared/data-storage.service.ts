@@ -16,6 +16,10 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getToken();
+    const headers = new HttpHeaders().set(
+      "Authorization",
+      "Bearer aksdjhkjashdfkjh"
+    );
 
     return this.httpClient.put(
       "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
@@ -23,10 +27,7 @@ export class DataStorageService {
       this.recipeService.getRecipes(),
       {
         observe: "body",
-        headers: new HttpHeaders().set(
-          "Authorization",
-          "Bearer aksdjhkjashdfkjh"
-        )
+        headers: headers
       }
     );
   }

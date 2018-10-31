@@ -17,7 +17,7 @@ export class DataStorageService {
     const token = this.authService.getToken();
 
     return this.http.put(
-      "https://udemy-recipe-book-9db59.firebaseio.com/recipes.jsonauth=" +
+      "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
         token,
       this.recipeService.getRecipes()
     );

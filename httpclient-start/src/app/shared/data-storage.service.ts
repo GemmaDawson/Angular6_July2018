@@ -28,17 +28,22 @@ export class DataStorageService {
     const token = this.authService.getToken();
 
     this.httpClient
-      .get<Recipe[]>(
+      .get(
         "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
-          token
+          token,
+        {
+          observe: "body",
+          responseType: "json"
+        }
       )
       .map(recipes => {
-        for (let recipe of recipes) {
-          if (!recipe["ingredients"]) {
-            recipe["ingredients"] = [];
-          }
-        }
-        return recipes;
+        console.log(recipes);
+        // for (let recipe of recipes) {
+        //   if (!recipe["ingredients"]) {
+        //     recipe["ingredients"] = [];
+        //   }
+        // }
+        // return recipes;
       })
       .subscribe((recipes: Recipe[]) => {
         this.recipeService.setRecipes(recipes);

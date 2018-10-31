@@ -40,7 +40,10 @@ export class DataStorageService {
       "PUT",
       "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json",
       this.recipeService.getRecipes(),
-      { reportProgress: true, params: new HttpParams().set("auth", token) }
+      {
+        reportProgress: true
+        // params: new HttpParams().set("auth", token)
+      }
       // useful when uploading/downloding
     );
     return this.httpClient.request(req);
@@ -50,20 +53,23 @@ export class DataStorageService {
     const token = this.authService.getToken();
 
     this.httpClient
-      .get("https://udemy-recipe-book-9db59.firebaseio.com/recipes.json", {
-        observe: "body",
-        params: new HttpParams().set("auth", token),
-        responseType: "json"
-      })
+      .get<Recipe[]>(
+        "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json",
+        {
+          observe: "body",
+          // params: new HttpParams().set("auth", token),
+          responseType: "json"
+        }
+      )
       .map(recipes => {
         console.log(recipes);
-        // for (let recipe of recipes) {
-        //   if (!recipe["ingredients"]) {
-        //     recipe["ingredients"] = [];
-        //   }
-        // }
-        // return recipes;
-        return [];
+        for (let recipe of recipes) {
+          if (!recipe["ingredients"]) {
+            recipe["ingredients"] = [];
+          }
+        }
+        return recipes;
+        // return [];
       })
       .subscribe((recipes: Recipe[]) => {
         this.recipeService.setRecipes(recipes);

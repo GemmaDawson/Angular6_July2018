@@ -16,18 +16,18 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getToken();
-    const headers = new HttpHeaders().set(
-      "Authorization",
-      "Bearer aksdjhkjashdfkjh"
-    );
+    // const headers = new HttpHeaders().set(
+    //   "Authorization",
+    //   "Bearer aksdjhkjashdfkjh"
+    // );
 
     return this.httpClient.put(
       "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
         token,
       this.recipeService.getRecipes(),
       {
-        observe: "body",
-        headers: headers
+        observe: "body"
+        // headers: headers
       }
     );
   }
@@ -52,6 +52,7 @@ export class DataStorageService {
         //   }
         // }
         // return recipes;
+        return [];
       })
       .subscribe((recipes: Recipe[]) => {
         this.recipeService.setRecipes(recipes);

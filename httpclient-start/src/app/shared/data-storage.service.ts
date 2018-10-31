@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import "rxjs/Rx";
 
 import { RecipeService } from "../recipes/recipe.service";
@@ -22,11 +22,11 @@ export class DataStorageService {
     // );
 
     return this.httpClient.put(
-      "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
-        token,
+      "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json",
       this.recipeService.getRecipes(),
       {
-        observe: "body"
+        observe: "body",
+        params: new HttpParams().set("auth", token)
         // headers: headers
       }
     );
@@ -36,14 +36,11 @@ export class DataStorageService {
     const token = this.authService.getToken();
 
     this.httpClient
-      .get(
-        "https://udemy-recipe-book-9db59.firebaseio.com/recipes.json?auth=" +
-          token,
-        {
-          observe: "body",
-          responseType: "json"
-        }
-      )
+      .get("https://udemy-recipe-book-9db59.firebaseio.com/recipes.json", {
+        observe: "body",
+        params: new HttpParams().set("auth", token),
+        responseType: "json"
+      })
       .map(recipes => {
         console.log(recipes);
         // for (let recipe of recipes) {
